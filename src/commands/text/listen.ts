@@ -21,7 +21,7 @@ const USE_CUSTOM_WAKE_WORD = true;
 
 export default {
   data: new SlashCommandBuilder()
-    .setName("listen")
+    .setName("l")
     .setDescription("Connects and listen to audio in voice channel"),
 
   async execute(interaction: CommandInteraction) {
