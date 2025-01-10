@@ -91,7 +91,7 @@ export default {
         });
 
         embed = createBasicEmbed(
-            `Bot has joined the channel ${member.voice.channel.name} and is now listening to ${member.user.tag}. Say "Bumblebee" before initiating any commands!`
+            `Bot has joined the channel ${member.voice.channel.name} and is now listening to ${member.user.tag}. Say "luffy" before initiating any commands!`
         );
 
         await interaction.reply({
@@ -109,7 +109,7 @@ export default {
 function initPorcupine() {
     // instantiate porcupine (hotword detection)
     const accessKey = process.env.PICOVOICE_ACCESS_KEY as string;
-    const porcupine = new Porcupine(accessKey, [BuiltinKeyword.BUMBLEBEE], [0.8]);
+    const porcupine = new Porcupine(accessKey, ["luffy", "loofy", "loo-fy", "loofee", "loufe", "lewfee"], [0.8]);
 
     return porcupine;
 }

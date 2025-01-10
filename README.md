@@ -13,7 +13,7 @@ A discord music bot capable of performing commands via voice recognition in addi
 
 ## Supported Commands (Voice & Text)
 
-Voice commands can be initiated by speaking the hotword ("bumblebee") and pausing for a very short moment before providing the desired command. Text commands can be initiated through the slash "/" command on discord.
+Voice commands can be initiated by speaking the hotword ("luffy") and pausing for a very short moment before providing the desired command. Text commands can be initiated through the slash "/" command on discord.
 
 - play {song name} - plays the first song/video yielded by a youtube search of the given {song name}. Otherwise, adds to the music queue
 - skip - Skips the current song
