@@ -45,7 +45,7 @@ export default async function getNextResource(nextSong: YoutubeInfo) {
     console.log(`Found ${trackList.length} tracks`);
     const track = trackList.find((t: any) => !!t.media);
     if (track) {
-        console.log(`Found track: ${track.title} (@${track.permalink})`);
+        console.log(`Found track: ${track.title} (@${track.permalink_url})`);
     }
     const url = track?.permalink_url || "https://soundcloud.com/taliya-jenkins/double-cheese-burger-hold-the"
     const filename = `file-${
