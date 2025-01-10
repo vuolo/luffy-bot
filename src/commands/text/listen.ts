@@ -147,7 +147,7 @@ function initPorcupine() {
     const porcupine = new Porcupine(accessKey, [
         //get the absolute path of the root directory
         path.resolve(__dirname, "../../../Wake_Words/Luffy_Mac.ppn"),
-    ], [0.35]);
+    ], [0.85]);
 
     return porcupine;
 }
