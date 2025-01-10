@@ -1,6 +1,7 @@
 export type YoutubeInfo = {
     url: string | null;
     info: Snippet | null;
+    originalQuery: string;
 };
 
 export type Snippet = {

@@ -25,7 +25,7 @@ export default async function playQueue(
     });
 
     connection!.subscribe(audioPlayer);
-    const resource = await getNextResource(firstSong, search);
+    const resource = await getNextResource(firstSong);
     audioPlayer.play(resource);
 
     audioPlayer.on("error", (error) => {
@@ -43,7 +43,7 @@ export default async function playQueue(
             return;
         }
 
-        const nextSongResource = await getNextResource(nextSong, search);
+        const nextSongResource = await getNextResource(nextSong);
         audioPlayer.play(nextSongResource);
 
         const nextEmbed = createPlayEmbed(nextSong.info!, nextSong.url!, member.user.id);

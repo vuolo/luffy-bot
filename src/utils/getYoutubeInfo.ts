@@ -22,5 +22,5 @@ export default async function getYoutubeInfo(search: string): Promise<YoutubeInf
         console.error(error);
     }
 
-    return { url, info };
+    return { url, info, originalQuery: search };
 }

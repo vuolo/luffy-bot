@@ -5,9 +5,8 @@ import { join } from "path";
 import { main } from "./soundcloud";
 
 // gets next audio resource of the passed in YoutubeInfo parameter
-export default async function getNextResource(nextSong: YoutubeInfo, search: string) {
-    // const songTitle = nextSong.info?.title;
-    const songTitle = search;
+export default async function getNextResource(nextSong: YoutubeInfo) {
+    const songTitle = nextSong.originalQuery || nextSong.info?.title;
     if (!songTitle) {
         throw new Error("No title found in YoutubeInfo object");
     }
