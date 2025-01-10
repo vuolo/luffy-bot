@@ -11,7 +11,19 @@ export default async function dispatchVoiceCommand(
     const command = interaction.client.voiceCommands.get(transcriptionCommand);
 
     if (!command) {
-        const embed = createBasicEmbed(`No commands matching ${transcriptionCommand} was found`);
+
+        const luffyNoCommandResponses = [
+            `🍆💦🍑 OI, ${interaction.user.username}! WHAT THE FUCK IS '${transcriptionCommand}'?! YOU TRYING TO GET ME ALL HARD AND CONFUSED?! 😏🔥💣`,
+            `😏💦🍑 YO, ${interaction.user.username}! '${transcriptionCommand}'?! YOU JUST PULL THAT OUT OF YOUR ASS OR WHAT?! 💩🍆🔥`,
+            `🍑🍆💦 WHAT EVEN IS '${transcriptionCommand}', ${interaction.user.username}?! YOU WANNA GET STRETCHED IN ALL THE WRONG WAYS?! 😏🌀🔥`,
+            `💦🍆🍗 IF '${transcriptionCommand}' ISN’T ABOUT MEAT OR SOMETHING NASTY, I’M DONE PLAYING WITH YOU, ${interaction.user.username}! 😡🍑💣`,
+            `🍑🍆💦 ${interaction.user.username}, YOU BETTER EXPLAIN '${transcriptionCommand}' BEFORE I GUM GUM YOUR WHOLE ASS INTO NEXT WEEK! 👊🔥💦`
+        ];
+
+        const embed = createBasicEmbed(
+            // `No commands matching ${transcriptionCommand} was found`
+            luffyNoCommandResponses[Math.floor(Math.random() * luffyNoCommandResponses.length)]
+        );
         console.error(`No commands matching ${transcriptionCommand} was found.`);
         return await interaction.channel!.send({ embeds: [embed] });
     }
