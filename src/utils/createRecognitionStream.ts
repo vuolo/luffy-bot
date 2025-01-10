@@ -34,7 +34,7 @@ export default function createRecognitionStream(
     });
     opusStream.pipe(decodedStream);
 
-    decodedStream.on("data", (chunk) => {
+    decodedStream.on("data", async (chunk) => {
       if (!hotwordDetected) {
         const int16Array = bufferToInt16(chunk);
 
@@ -64,7 +64,7 @@ export default function createRecognitionStream(
               "GUM GUM... JET PISTOL! FAST AND STRAIGHT TO THE POINT—JUST HOW YOU LIKE IT!",
               "SHISHISHI, YOU TRYING TO MAKE ME GO 'FOURTH GEAR'? YOU’RE IN FOR A WILD RIDE!",
               "OI, IF YOU KEEP TEASING ME, I’LL SHOW YOU MY 'GATLING'—NO MERCY!",
-              `what do u want ${interaction.user.username}?`,
+              `what do u want ${(await interaction.client.users.fetch(userId)).username}?`,
             ];
             const embed = createBasicEmbed(
               luffy_responses[
