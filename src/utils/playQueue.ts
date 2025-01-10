@@ -12,7 +12,8 @@ import { createPlayEmbed } from "./embeds";
 export default async function playQueue(
     interaction: CommandInteraction,
     member: GuildMember,
-    queue: YoutubeInfo[]
+    queue: YoutubeInfo[],
+    search: string
 ) {
     const connection = getVoiceConnection(member.guild.id);
     const firstSong = queue[0];
@@ -24,7 +25,7 @@ export default async function playQueue(
     });
 
     connection!.subscribe(audioPlayer);
-    const resource = await getNextResource(firstSong);
+    const resource = await getNextResource(firstSong, search);
     audioPlayer.play(resource);
 
     audioPlayer.on("error", (error) => {
@@ -42,7 +43,7 @@ export default async function playQueue(
             return;
         }
 
-        const nextSongResource = await getNextResource(nextSong);
+        const nextSongResource = await getNextResource(nextSong, search);
         audioPlayer.play(nextSongResource);
 
         const nextEmbed = createPlayEmbed(nextSong.info!, nextSong.url!, member.user.id);

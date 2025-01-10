@@ -82,7 +82,7 @@ export default {
             const queueInit = [song];
             client.queueCollection.set(member.guild.id, queueInit);
             interaction.reply({ content: "Audio player firing up...", ephemeral: true });
-            playQueue(interaction, member, queueInit);
+            playQueue(interaction, member, queueInit, search);
         } else {
             queue.push(song);
             interaction.client.queueCollection.set(member.guild.id, queue);

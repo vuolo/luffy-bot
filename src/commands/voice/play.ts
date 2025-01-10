@@ -32,7 +32,7 @@ export default {
             const queueInit = [song];
             client.queueCollection.set(member.guild.id, queueInit);
             interaction.channel!.send("Audio player firing up...");
-            playQueue(interaction, member, queueInit);
+            playQueue(interaction, member, queueInit, search);
         } else {
             queue.push(song);
             interaction.client.queueCollection.set(member.guild.id, queue);
