@@ -102,7 +102,10 @@ export default {
           transcription = await transcribeAudio(inputAudio, speechClient);
         }
 
-        if (transcription) dispatchVoiceCommand(transcription, interaction);
+        if (transcription) dispatchVoiceCommand(transcription, interaction, 
+            // get the user object using the userId
+            (await client.users.fetch(userId)).username
+        );
       }
     });
 

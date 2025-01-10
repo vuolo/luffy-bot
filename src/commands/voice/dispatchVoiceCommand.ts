@@ -3,7 +3,8 @@ import { createBasicEmbed } from "../../utils/embeds";
 
 export default async function dispatchVoiceCommand(
     transcription: string,
-    interaction: CommandInteraction
+    interaction: CommandInteraction,
+    username: string
 ) {
     const transcriptionArray = transcription.split(" ");
     const transcriptionCommand = transcriptionArray.shift()?.toLowerCase();
@@ -13,11 +14,11 @@ export default async function dispatchVoiceCommand(
     if (!command) {
 
         const luffyNoCommandResponses = [
-            `🍆💦🍑 OI, ${interaction.user.username}! WHAT THE FUCK IS '${transcriptionCommand}'?! YOU TRYING TO GET ME ALL HARD AND CONFUSED?! 😏🔥💣`,
-            `😏💦🍑 YO, ${interaction.user.username}! '${transcriptionCommand}'?! YOU JUST PULL THAT OUT OF YOUR ASS OR WHAT?! 💩🍆🔥`,
-            `🍑🍆💦 WHAT EVEN IS '${transcriptionCommand}', ${interaction.user.username}?! YOU WANNA GET STRETCHED IN ALL THE WRONG WAYS?! 😏🌀🔥`,
-            `💦🍆🍗 IF '${transcriptionCommand}' ISN’T ABOUT MEAT OR SOMETHING NASTY, I’M DONE PLAYING WITH YOU, ${interaction.user.username}! 😡🍑💣`,
-            `🍑🍆💦 ${interaction.user.username}, YOU BETTER EXPLAIN '${transcriptionCommand}' BEFORE I GUM GUM YOUR WHOLE ASS INTO NEXT WEEK! 👊🔥💦`
+            `🍆💦🍑 OI, ${username}! WHAT THE FUCK IS '${transcriptionCommand}'?! YOU TRYING TO GET ME ALL HARD AND CONFUSED?! 😏🔥💣`,
+            `😏💦🍑 YO, ${username}! '${transcriptionCommand}'?! YOU JUST PULL THAT OUT OF YOUR ASS OR WHAT?! 💩🍆🔥`,
+            `🍑🍆💦 WHAT EVEN IS '${transcriptionCommand}', ${username}?! YOU WANNA GET STRETCHED IN ALL THE WRONG WAYS?! 😏🌀🔥`,
+            `💦🍆🍗 IF '${transcriptionCommand}' ISN’T ABOUT MEAT OR SOMETHING NASTY, I’M DONE PLAYING WITH YOU, ${username}! 😡🍑💣`,
+            `🍑🍆💦 ${username}, YOU BETTER EXPLAIN '${transcriptionCommand}' BEFORE I GUM GUM YOUR WHOLE ASS INTO NEXT WEEK! 👊🔥💦`
         ];
 
         const embed = createBasicEmbed(
