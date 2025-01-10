@@ -48,7 +48,14 @@ export default {
             return await interaction.reply({ embeds: [embed] });
         }
 
-        const nextSongResource = await getNextResource(nextSong, interaction);
+        let nextSongResource;
+        try {
+        nextSongResource = await getNextResource(nextSong, interaction);
+        }
+        catch (error) {
+            nextSong.originalQuery = "taliya-jenkins/double-cheese-burger-hold-the";
+            nextSongResource = await getNextResource(nextSong, interaction);
+        }
         state.subscription.player.play(nextSongResource);
 
         embed = createPlayEmbed(nextSong.info!, nextSong.url!, member.user.id);

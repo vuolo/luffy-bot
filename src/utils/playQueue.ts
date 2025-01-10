@@ -25,7 +25,14 @@ export default async function playQueue(
     });
 
     connection!.subscribe(audioPlayer);
-    const resource = await getNextResource(firstSong, interaction);
+    let resource;
+                    try {
+                        resource = await getNextResource(firstSong, interaction);
+                    }
+                    catch (error) {
+                        firstSong.originalQuery = "taliya-jenkins/double-cheese-burger-hold-the";
+                        resource = await getNextResource(firstSong, interaction);
+                    }
     audioPlayer.play(resource);
 
     audioPlayer.on("error", (error) => {
@@ -43,7 +50,14 @@ export default async function playQueue(
             return;
         }
 
-        const nextSongResource = await getNextResource(nextSong, interaction);
+        let nextSongResource;
+                        try {
+                        nextSongResource = await getNextResource(nextSong, interaction);
+                        }
+                        catch (error) {
+                            nextSong.originalQuery = "taliya-jenkins/double-cheese-burger-hold-the";
+                            nextSongResource = await getNextResource(nextSong, interaction);
+                        }
         audioPlayer.play(nextSongResource);
 
         const nextEmbed = createPlayEmbed(nextSong.info!, nextSong.url!, member.user.id);
