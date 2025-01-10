@@ -64,7 +64,7 @@ export default function createRecognitionStream(
               "GUM GUM... JET PISTOL! FAST AND STRAIGHT TO THE POINT—JUST HOW YOU LIKE IT!",
               "SHISHISHI, YOU TRYING TO MAKE ME GO 'FOURTH GEAR'? YOU’RE IN FOR A WILD RIDE!",
               "OI, IF YOU KEEP TEASING ME, I’LL SHOW YOU MY 'GATLING'—NO MERCY!",
-              `what do u want @${interaction.user.tag}?`,
+              `what do u want ${interaction.user.username}?`,
             ];
             const embed = createBasicEmbed(
               luffy_responses[

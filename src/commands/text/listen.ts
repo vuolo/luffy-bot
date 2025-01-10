@@ -1,6 +1,6 @@
 import { SlashCommandBuilder, CommandInteraction, GuildMember, Client } from "discord.js";
 import { joinVoiceChannel, VoiceConnectionStatus, entersState } from "@discordjs/voice";
-import { Porcupine, BuiltinKeyword } from "@picovoice/porcupine-node";
+import { Porcupine } from "@picovoice/porcupine-node";
 import speech from "@google-cloud/speech";
 import createRecognitionStream from "../../utils/createRecognitionStream";
 import transcribeAudio from "../../utils/transcribeAudio";
@@ -92,16 +92,16 @@ export default {
         });
 
         const luffyJoinResponses = [
-            `Yo, @${member.user.tag}, I’m in ${member.voice.channel.name}. Say 'Luffy' and I’ll handle it hard!`,
-            `Oi, @${member.user.tag}, say 'Luffy' or I’m not touching anything!`,
+            `Yo, ${member.user.username}, I’m in ${member.voice.channel.name}. Say 'Luffy' and I’ll handle it hard!`,
+            `Oi, ${member.user.username}, say 'Luffy' or I’m not touching anything!`,
             `I’m here in ${member.voice.channel.name}. Say 'Luffy' and watch me work!`,
-            `@${member.user.tag}, say 'Luffy' or get nothing from me!`,
+            `${member.user.username}, say 'Luffy' or get nothing from me!`,
             `Gum Gum... I’m in ${member.voice.channel.name}, say 'Luffy' and I’ll go all out!`,
-            `Yo, @${member.user.tag}, say 'Luffy' if you want me on you!`,
+            `Yo, ${member.user.username}, say 'Luffy' if you want me on you!`,
             `I’m waiting in ${member.voice.channel.name}. Say 'Luffy' and let’s get dirty!`,
-            `Oi, @${member.user.tag}, say 'Luffy' or I’ll just stay put!`,
+            `Oi, ${member.user.username}, say 'Luffy' or I’ll just stay put!`,
             `Gum Gum... say 'Luffy' in ${member.voice.channel.name} and watch me stretch real good!`,
-            `Yo, @${member.user.tag}, say 'Luffy' or I’m not doing a thing!`
+            `Yo, ${member.user.username}, say 'Luffy' or I’m not doing a thing!`
         ];
 
         embed = createBasicEmbed(
