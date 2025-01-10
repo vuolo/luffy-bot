@@ -88,7 +88,7 @@ function bufferToInt16(buffer: Buffer) {
     const int16Array = [];
 
     for (let i = 0; i < buffer.length; i += 2) {
-        int16Array.push(buffer.readInt16LE(i));
+        int16Array.push(buffer.readInt16LE(i) as never);
     }
 
     return int16Array;

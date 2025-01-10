@@ -16,7 +16,7 @@ const commandFiles = fs.readdirSync(commandsPath);
 for (const file of commandFiles) {
     const filePath = path.join(commandsPath, file);
     const command = require(filePath).default;
-    commands.push(command.data.toJSON());
+    commands.push(command.data.toJSON() as never);
 }
 
 console.log(commands);
