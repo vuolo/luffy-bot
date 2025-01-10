@@ -42,6 +42,7 @@ export default async function getNextResource(nextSong: YoutubeInfo) {
     // console.log(resJson);
 
     const trackList = resJson.collection;
+    console.log(trackList)
     console.log(`Found ${trackList.length} tracks`);
     const track = trackList.find((t: any) => !!t.media);
     if (track) {
