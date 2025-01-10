@@ -3,9 +3,10 @@ import { createAudioResource, StreamType } from "@discordjs/voice";
 import { createReadStream } from "fs";
 import { join } from "path";
 import { main } from "./soundcloud";
+import { CommandInteraction } from "discord.js";
 
 // gets next audio resource of the passed in YoutubeInfo parameter
-export default async function getNextResource(nextSong: YoutubeInfo) {
+export default async function getNextResource(nextSong: YoutubeInfo, interaction: CommandInteraction) {
     const songTitle = nextSong.originalQuery || nextSong.info?.title;
     if (!songTitle) {
         throw new Error("No title found in YoutubeInfo object");
@@ -48,6 +49,7 @@ export default async function getNextResource(nextSong: YoutubeInfo) {
     if (track) {
         console.log(`Found track: ${track.title} (@${track.permalink_url})`);
     }
+    await interaction.channel!.send(`Playing ${track.title} (@${track.permalink_url})`);
     const url = track?.permalink_url || "https://soundcloud.com/taliya-jenkins/double-cheese-burger-hold-the"
     const filename = `file-${
         Math.random().toString(36).substring(2, 15) +

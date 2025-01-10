@@ -39,7 +39,7 @@ export default {
             return await interaction.channel!.send({ embeds: [embed] });
         }
 
-        const nextSongResource = await getNextResource(nextSong);
+        const nextSongResource = await getNextResource(nextSong, interaction);
         state.subscription.player.play(nextSongResource);
 
         embed = createPlayEmbed(nextSong.info!, nextSong.url!, member.user.id);
