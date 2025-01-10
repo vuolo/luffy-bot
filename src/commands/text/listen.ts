@@ -109,7 +109,7 @@ export default {
 function initPorcupine() {
     // instantiate porcupine (hotword detection)
     const accessKey = process.env.PICOVOICE_ACCESS_KEY as string;
-    const porcupine = new Porcupine(accessKey, ["luffy", "loofy", "loo-fy", "loofee", "loufe", "lewfee"], [0.8]);
+    const porcupine = new Porcupine(accessKey, ["luffy", "loofy", "loo-fy", "loofee", "loufe", "lewfee"], [0.75, 0.75, 0.75, 0.75, 0.75, 0.75]);
 
     return porcupine;
 }
