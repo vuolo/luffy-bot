@@ -6,6 +6,7 @@ import createRecognitionStream from "../../utils/createRecognitionStream";
 import transcribeAudio from "../../utils/transcribeAudio";
 import dispatchVoiceCommand from "../voice/dispatchVoiceCommand";
 import { createBasicEmbed } from "../../utils/embeds";
+import path from "path";
 
 export default {
     data: new SlashCommandBuilder()
@@ -109,7 +110,11 @@ export default {
 function initPorcupine() {
     // instantiate porcupine (hotword detection)
     const accessKey = process.env.PICOVOICE_ACCESS_KEY as string;
-    const porcupine = new Porcupine(accessKey, ["luffy", "loofy", "loo-fy", "loofee", "loufe", "lewfee"], [0.75, 0.75, 0.75, 0.75, 0.75, 0.75]);
+    // const porcupine = new Porcupine(accessKey, ["luffy", "loofy", "loo-fy", "loofee", "loufe", "lewfee"], [0.75, 0.75, 0.75, 0.75, 0.75, 0.75]);
+    const porcupine = new Porcupine(accessKey, [
+        //get the absolute path of the root directory
+        path.resolve(__dirname, "../../../Wake_Words/Luffy_Linex.Windows.ppn"),
+    ], [0.75]);
 
     return porcupine;
 }
