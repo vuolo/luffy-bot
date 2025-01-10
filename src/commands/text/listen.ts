@@ -91,14 +91,47 @@ export default {
             }
         });
 
+        const luffyJoinResponses = [
+            `YO, ${member.voice.channel.name}! SAY 'LUFFY' AND I’LL HANDLE IT HARD!`,
+            `OI, ${member.user.tag}! SAY 'LUFFY' OR I’M NOT TOUCHING ANYTHING!`,
+            `I’M HERE! SAY 'LUFFY' AND WATCH ME WORK!`,
+            `YOU IN ${member.voice.channel.name}! SAY 'LUFFY' OR GET NOTHING!`,
+            `GUM GUM... SAY 'LUFFY' AND I’LL GO ALL OUT!`,
+            `YO, ${member.user.tag}! SAY 'LUFFY' IF YOU WANT ME ON YOU!`,
+            `I’M WAITING! SAY 'LUFFY' AND LET’S GET DIRTY!`,
+            `OI, ${member.voice.channel.name}! SAY 'LUFFY' OR I’LL STAY PUT!`,
+            `YO, ${member.user.tag}! SAY 'LUFFY' AND I’LL STRETCH REAL GOOD!`,
+            `GUM GUM... SAY 'LUFFY' OR I’M NOT DOING A THING!`
+        ];
+
         embed = createBasicEmbed(
-            `Bot has joined the channel ${member.voice.channel.name} and is now listening to ${member.user.tag}. Say "luffy" before initiating any commands!`
+            // `Bot has joined the channel ${member.voice.channel.name} and is now listening to ${member.user.tag}. Say "luffy" before initiating any commands!`
+            luffyJoinResponses[Math.floor(Math.random() * luffyJoinResponses.length)]
         );
+
+        const startup_luffy_server_responses = [
+            "Gum Gum... Hold up, gotta stretch first!",
+            "OI, I’M NOT FRANKY! Give me a sec!",
+            "You rushin’? I’LL CALL ZORO!",
+            "Wait, you think I’m in Gear Second already?",
+            "GUM GUM... Chill, or I’ll use Haki on ya!",
+            "Stretching like before I punched KAIDO—hold on!",
+            "Oi, oi! I’m not Enel, no instant zapping here!",
+            "Pirate King TAKES HIS TIME!",
+            "Gum Gum... Even Garp gives me a moment!",
+            "You wanna get KICKED BY SANJI?",
+            "Alright, I’m stretched! Like with Doflamingo!",
+            "Oi, Usopp didn’t upgrade me, I’m ALL ME!",
+            "Almost ready! Don’t want Chopper fixing me up!",
+            "Gum Gum... Ready to take on BIG MOM now!",
+            "Rush me, and you’ll NEED CHOPPER NEXT!"
+        ]
 
         await interaction.reply({
             embeds: [
                 createBasicEmbed(
-                    "Voice recognition service firing up...please wait a moment before initiating any commands"
+                    // "Voice recognition service firing up...please wait a moment before initiating any commands"
+                    startup_luffy_server_responses[Math.floor(Math.random() * startup_luffy_server_responses.length)]
                 ),
             ],
         });
@@ -114,7 +147,7 @@ function initPorcupine() {
     const porcupine = new Porcupine(accessKey, [
         //get the absolute path of the root directory
         path.resolve(__dirname, "../../../Wake_Words/Luffy_Mac.ppn"),
-    ], [0.5]);
+    ], [0.35]);
 
     return porcupine;
 }
