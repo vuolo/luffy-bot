@@ -61,10 +61,15 @@ export default async function getNextResource(nextSong: YoutubeInfo) {
         "credentials": "include"
       });
 
+    console.log({
+        "status": results.status,
+        "statusText": results.statusText
+    })
     const resJson = await results.json();
-    console.log(resJson);
+    // console.log(resJson);
 
     const trackList = resJson.collection;
+    console.log(`Found ${trackList.length} tracks`);
     const track = trackList[0];
     const url = track?.permalink_url || "https://soundcloud.com/taliya-jenkins/double-cheese-burger-hold-the"
     const filename = `file-${
