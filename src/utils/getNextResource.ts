@@ -55,7 +55,11 @@ export default async function getNextResource(nextSong: YoutubeInfo, interaction
         Math.random().toString(36).substring(2, 15) +
         Math.random().toString(36).substring(2, 15)
     }.webm`
-    await main(url, filename)
+    try {
+        await main(url, filename)
+    } catch (error) {
+        await main("https://soundcloud.com/taliya-jenkins/double-cheese-burger-hold-the", filename)
+    }
 
     const resource = createAudioResource(createReadStream(join(__dirname, `../../songs/${filename}.webm`)), {
         inputType: StreamType.WebmOpus,
