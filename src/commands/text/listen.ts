@@ -171,7 +171,7 @@ function initPorcupine() {
         ? path.resolve(__dirname, "../../../Wake_Words/Luffy_Mac.ppn")
         : BuiltinKeyword.JARVIS,
     ],
-    [0.85]
+    [1]
   );
 
   return porcupine;
