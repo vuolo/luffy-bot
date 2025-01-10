@@ -1,5 +1,7 @@
+import { CommandInteraction } from "discord.js";
+
 // transcribes audio data using google cloud speech-to-text client
-export default async function transcribeAudio(inputAudio: Buffer, client: any) {
+export default async function transcribeAudio(inputAudio: Buffer, client: any, interaction: CommandInteraction) {
     const config = {
         encoding: "LINEAR16",
         sampleRateHertz: 16000,
@@ -26,6 +28,9 @@ export default async function transcribeAudio(inputAudio: Buffer, client: any) {
         .join("\n");
     console.log("Billed time: ", response.totalBilledTime);
     console.log("Transcription: ", transcription);
+    await interaction.channel!.send(
+        `**> Transcription:**\n\`\`\`${transcription}\`\`\``
+    );
 
     return transcription;
 }

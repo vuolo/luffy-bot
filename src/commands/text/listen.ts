@@ -99,7 +99,7 @@ export default {
         )) as Buffer;
 
         if (inputAudio.length > 0) {
-          transcription = await transcribeAudio(inputAudio, speechClient);
+          transcription = await transcribeAudio(inputAudio, speechClient, interaction);
         }
 
         if (transcription) dispatchVoiceCommand(transcription, interaction, 
