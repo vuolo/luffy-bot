@@ -87,8 +87,8 @@ export default {
 
     receiver.speaking.on("start", async (userId) => {
       console.log(`User ${userId} started speaking`);
-      const CHECK_USER_ID = false;
-      if (CHECK_USER_ID && userId === client.listenConnection.get(member.guild.id)) {
+      const DONT_CHECK_USER_ID = true;
+      if (DONT_CHECK_USER_ID || userId === client.listenConnection.get(member.guild.id)) {
         let transcription = "";
 
         const inputAudio = (await createRecognitionStream(
