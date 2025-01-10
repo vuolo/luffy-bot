@@ -92,16 +92,16 @@ export default {
         });
 
         const luffyJoinResponses = [
-            `YO, ${member.voice.channel.name}! SAY 'LUFFY' AND I’LL HANDLE IT HARD!`,
-            `OI, ${member.user.tag}! SAY 'LUFFY' OR I’M NOT TOUCHING ANYTHING!`,
-            `I’M HERE! SAY 'LUFFY' AND WATCH ME WORK!`,
-            `YOU IN ${member.voice.channel.name}! SAY 'LUFFY' OR GET NOTHING!`,
-            `GUM GUM... SAY 'LUFFY' AND I’LL GO ALL OUT!`,
-            `YO, ${member.user.tag}! SAY 'LUFFY' IF YOU WANT ME ON YOU!`,
-            `I’M WAITING! SAY 'LUFFY' AND LET’S GET DIRTY!`,
-            `OI, ${member.voice.channel.name}! SAY 'LUFFY' OR I’LL STAY PUT!`,
-            `YO, ${member.user.tag}! SAY 'LUFFY' AND I’LL STRETCH REAL GOOD!`,
-            `GUM GUM... SAY 'LUFFY' OR I’M NOT DOING A THING!`
+            `Yo, @${member.user.tag}, I’m in ${member.voice.channel.name}. Say 'Luffy' and I’ll handle it hard!`,
+            `Oi, @${member.user.tag}, say 'Luffy' or I’m not touching anything!`,
+            `I’m here in ${member.voice.channel.name}. Say 'Luffy' and watch me work!`,
+            `@${member.user.tag}, say 'Luffy' or get nothing from me!`,
+            `Gum Gum... I’m in ${member.voice.channel.name}, say 'Luffy' and I’ll go all out!`,
+            `Yo, @${member.user.tag}, say 'Luffy' if you want me on you!`,
+            `I’m waiting in ${member.voice.channel.name}. Say 'Luffy' and let’s get dirty!`,
+            `Oi, @${member.user.tag}, say 'Luffy' or I’ll just stay put!`,
+            `Gum Gum... say 'Luffy' in ${member.voice.channel.name} and watch me stretch real good!`,
+            `Yo, @${member.user.tag}, say 'Luffy' or I’m not doing a thing!`
         ];
 
         embed = createBasicEmbed(
