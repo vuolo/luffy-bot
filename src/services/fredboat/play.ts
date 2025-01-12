@@ -28,5 +28,9 @@ export default async (url: string, guildId = FREAKBOB_GUILD_ID) => {
     })
   ).json()) as TrackResponse;
 
+  console.log(
+    `Playing track ${jsonData.track.title} from ${jsonData.track.type}`
+  )
+
   return jsonData;
 };

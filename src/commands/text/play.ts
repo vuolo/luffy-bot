@@ -14,6 +14,7 @@ import {
 import getYoutubeInfo from "../../utils/getYoutubeInfo";
 import { createBasicEmbed, createQueueEmbed } from "../../utils/embeds";
 import playQueue from "../../utils/playQueue";
+import playFirst from "src/services/fredboat/playFirst";
 
 export default {
     data: new SlashCommandBuilder()
@@ -69,28 +70,29 @@ export default {
         }
 
         const search = options.getString("search")!;
-        const song = await getYoutubeInfo(search);
+        await playFirst(search, interaction.guild?.id);
+        // const song = await getYoutubeInfo(search);
 
-        if (!song.url) {
-            embed = createBasicEmbed("Could not find the given video/song");
-            return await interaction.reply({ embeds: [embed] });
-        }
+        // if (!song.url) {
+        //     embed = createBasicEmbed("Could not find the given video/song");
+        //     return await interaction.reply({ embeds: [embed] });
+        // }
 
-        const queue = client.queueCollection.get(member.guild.id);
+        // const queue = client.queueCollection.get(member.guild.id);
 
-        if (!queue) {
-            const queueInit = [song];
-            client.queueCollection.set(member.guild.id, queueInit);
-            interaction.reply({ content: `Audio player firing up... looking for "${search}"`, ephemeral: true });
-            playQueue(interaction, member, queueInit, search);
-        } else {
-            queue.push(song);
-            interaction.client.queueCollection.set(member.guild.id, queue);
+        // if (!queue) {
+        //     const queueInit = [song];
+        //     client.queueCollection.set(member.guild.id, queueInit);
+        //     interaction.reply({ content: `Audio player firing up... looking for "${search}"`, ephemeral: true });
+        //     playQueue(interaction, member, queueInit, search);
+        // } else {
+        //     queue.push(song);
+        //     interaction.client.queueCollection.set(member.guild.id, queue);
 
-            const position = queue.length - 1;
-            const queueEmbed = createQueueEmbed(song.info!, song.url!, position);
+        //     const position = queue.length - 1;
+        //     const queueEmbed = createQueueEmbed(song.info!, song.url!, position);
 
-            return await interaction.reply({ embeds: [queueEmbed] });
-        }
+        //     return await interaction.reply({ embeds: [queueEmbed] });
+        // }
     },
 };

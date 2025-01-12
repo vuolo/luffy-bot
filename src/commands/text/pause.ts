@@ -1,6 +1,7 @@
 import { getVoiceConnection, VoiceConnectionReadyState } from "@discordjs/voice";
 import { CommandInteraction, GuildMember, SlashCommandBuilder } from "discord.js";
 import { createBasicEmbed } from "../../utils/embeds";
+import pause from "src/services/fredboat/pause";
 
 export default {
     data: new SlashCommandBuilder().setName("pause").setDescription("Pause bot audio"),
@@ -22,14 +23,15 @@ export default {
             return await interaction.reply({ embeds: [embed] });
         }
 
-        const state = connection.state as VoiceConnectionReadyState;
+        // const state = connection.state as VoiceConnectionReadyState;
 
-        if (state.subscription?.player.state.status !== "playing") {
-            embed = createBasicEmbed("Bot is not currently playing anything!");
-            return await interaction.reply({ embeds: [embed] });
-        }
+        // if (state.subscription?.player.state.status !== "playing") {
+        //     embed = createBasicEmbed("Bot is not currently playing anything!");
+        //     return await interaction.reply({ embeds: [embed] });
+        // }
 
-        state.subscription.player.pause();
+        // state.subscription.player.pause();
+        await pause(interaction.guild?.id);
 
         embed = createBasicEmbed("Audio has been paused");
         return await interaction.reply({ embeds: [embed] });

@@ -1,6 +1,7 @@
 import { CommandInteraction, GuildMember, SlashCommandBuilder } from "discord.js";
 import { getVoiceConnection, VoiceConnectionReadyState } from "@discordjs/voice";
 import { createBasicEmbed } from "../../utils/embeds";
+import unpause from "src/services/fredboat/unpause";
 
 export default {
     data: new SlashCommandBuilder().setName("resume").setDescription("Resumes bot audio"),
@@ -22,14 +23,15 @@ export default {
             return await interaction.reply({ embeds: [embed] });
         }
 
-        const state = connection.state as VoiceConnectionReadyState;
+        // const state = connection.state as VoiceConnectionReadyState;
 
-        if (state.subscription?.player.state.status !== "paused") {
-            embed = createBasicEmbed("Bot is not currently playing anything!");
-            return await interaction.reply({ embeds: [embed] });
-        }
+        // if (state.subscription?.player.state.status !== "paused") {
+        //     embed = createBasicEmbed("Bot is not currently playing anything!");
+        //     return await interaction.reply({ embeds: [embed] });
+        // }
 
-        state.subscription.player.unpause();
+        // state.subscription.player.unpause();
+        await unpause(interaction.guild?.id);
 
         embed = createBasicEmbed("Audio has been resumed");
         return await interaction.reply({ embeds: [embed] });

@@ -2,6 +2,7 @@ import { Client, CommandInteraction, GuildMember, SlashCommandBuilder } from "di
 import { getVoiceConnection, VoiceConnectionReadyState } from "@discordjs/voice";
 import getNextResource from "../../utils/getNextResource";
 import { createPlayEmbed, createBasicEmbed } from "../../utils/embeds";
+import skip from "src/services/fredboat/skip";
 
 export default {
     data: new SlashCommandBuilder().setName("skip").setDescription("Skips a song"),
@@ -23,42 +24,45 @@ export default {
             return await interaction.reply({ embeds: [embed] });
         }
 
-        const state = connection.state as VoiceConnectionReadyState;
+        const trackId = "";
+        await skip(trackId, interaction.guild?.id);
 
-        if (!state.subscription?.player.state.status) {
-            embed = createBasicEmbed("Bot is not currently playing anything!");
-            return await interaction.reply({ embeds: [embed] });
-        }
+        // const state = connection.state as VoiceConnectionReadyState;
 
-        const queue = client.queueCollection.get(member.guild.id);
+        // if (!state.subscription?.player.state.status) {
+        //     embed = createBasicEmbed("Bot is not currently playing anything!");
+        //     return await interaction.reply({ embeds: [embed] });
+        // }
 
-        if (!queue) {
-            embed = createBasicEmbed(`There are no songs to skip`);
-            return await interaction.reply({ embeds: [embed] });
-        }
+        // const queue = client.queueCollection.get(member.guild.id);
 
-        queue.shift();
-        const nextSong = queue[0];
+        // if (!queue) {
+        //     embed = createBasicEmbed(`There are no songs to skip`);
+        //     return await interaction.reply({ embeds: [embed] });
+        // }
 
-        if (!nextSong) {
-            console.log("queue is empty");
-            state.subscription.player.stop();
-            interaction.client.queueCollection.delete(member.guild.id);
-            embed = createBasicEmbed("Song queue is now empty");
-            return await interaction.reply({ embeds: [embed] });
-        }
+        // queue.shift();
+        // const nextSong = queue[0];
 
-        let nextSongResource;
-        try {
-        nextSongResource = await getNextResource(nextSong, interaction);
-        }
-        catch (error) {
-            nextSong.originalQuery = "taliya-jenkins/double-cheese-burger-hold-the";
-            nextSongResource = await getNextResource(nextSong, interaction);
-        }
-        state.subscription.player.play(nextSongResource);
+        // if (!nextSong) {
+        //     console.log("queue is empty");
+        //     state.subscription.player.stop();
+        //     interaction.client.queueCollection.delete(member.guild.id);
+        //     embed = createBasicEmbed("Song queue is now empty");
+        //     return await interaction.reply({ embeds: [embed] });
+        // }
 
-        embed = createPlayEmbed(nextSong.info!, nextSong.url!, member.user.id);
-        return await interaction.reply({ embeds: [embed] });
+        // let nextSongResource;
+        // try {
+        // nextSongResource = await getNextResource(nextSong, interaction);
+        // }
+        // catch (error) {
+        //     nextSong.originalQuery = "taliya-jenkins/double-cheese-burger-hold-the";
+        //     nextSongResource = await getNextResource(nextSong, interaction);
+        // }
+        // state.subscription.player.play(nextSongResource);
+
+        // embed = createPlayEmbed(nextSong.info!, nextSong.url!, member.user.id);
+        // return await interaction.reply({ embeds: [embed] });
     },
 };

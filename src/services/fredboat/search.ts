@@ -29,5 +29,8 @@ export default async (query: string, guildId = FREAKBOB_GUILD_ID) => {
     })
   ).json()) as SearchResultTrackList;
 
+  console.log(`Found ${jsonData.length} search results for query: ${query}`);
+  console.log(jsonData);
+
   return jsonData;
 };
