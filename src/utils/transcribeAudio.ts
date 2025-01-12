@@ -1,4 +1,13 @@
 import { CommandInteraction } from "discord.js";
+import userIds from "../consts/user-ids";
+import {
+  createAudioPlayer,
+  createAudioResource,
+  NoSubscriberBehavior,
+  StreamType,
+} from "@discordjs/voice";
+import { createReadStream } from "fs";
+import { join } from "path";
 
 // transcribes audio data using google cloud speech-to-text client
 export default async function transcribeAudio(
@@ -47,5 +56,35 @@ export default async function transcribeAudio(
     );
   }
 
+  await sayVoiceLine(transcription, interaction, userId);
+
   return transcription;
 }
+
+const sayVoiceLine = async (
+  transcription: string,
+  interaction: CommandInteraction,
+  userId: string
+) => {
+  const customUser = userIds[userId]; // "mikey" | "rafe" | "blake" | "jonny" | "connor" | "justin"
+
+  const filename = "luffy-F-YOR-MOTHA";
+  const path = join(__dirname, `../../voice-lines/${filename}.webm`)
+  const resource = createAudioResource(
+    createReadStream(path),
+    {
+      inputType: StreamType.WebmOpus,
+      inlineVolume: true,
+    }
+  );
+
+  const audioPlayer = createAudioPlayer({
+    behaviors: {
+      noSubscriber: NoSubscriberBehavior.Play,
+    },
+  });
+
+  console.log(`Playing voice line for ${customUser || userId} -- ${filename} -- ${transcription} -- ${path}`);
+
+  audioPlayer.play(resource);
+};
