@@ -14,7 +14,7 @@ import {
 import getYoutubeInfo from "../../utils/getYoutubeInfo";
 import { createBasicEmbed, createQueueEmbed } from "../../utils/embeds";
 import playQueue from "../../utils/playQueue";
-import playFirst from "src/services/fredboat/playFirst";
+import playFirst from "../../services/fredboat/playFirst";
 
 export default {
     data: new SlashCommandBuilder()

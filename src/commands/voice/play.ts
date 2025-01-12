@@ -2,7 +2,7 @@ import { Client, CommandInteraction, GuildMember } from "discord.js";
 import playQueue from "../../utils/playQueue";
 import { createQueueEmbed, createBasicEmbed } from "../../utils/embeds";
 import getYoutubeInfo from "../../utils/getYoutubeInfo";
-import playFirst from "src/services/fredboat/playFirst";
+import playFirst from "../../services/fredboat/playFirst";
 
 export default {
     data: {

@@ -2,7 +2,7 @@ import { getVoiceConnection, VoiceConnectionReadyState } from "@discordjs/voice"
 import { Client, CommandInteraction, GuildMember } from "discord.js";
 import { createPlayEmbed, createBasicEmbed } from "../../utils/embeds";
 import getNextResource from "../../utils/getNextResource";
-import skip from "src/services/fredboat/skip";
+import skip from "../../services/fredboat/skip";
 
 export default {
     data: {

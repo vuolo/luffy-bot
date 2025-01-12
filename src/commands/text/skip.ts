@@ -2,7 +2,7 @@ import { Client, CommandInteraction, GuildMember, SlashCommandBuilder } from "di
 import { getVoiceConnection, VoiceConnectionReadyState } from "@discordjs/voice";
 import getNextResource from "../../utils/getNextResource";
 import { createPlayEmbed, createBasicEmbed } from "../../utils/embeds";
-import skip from "src/services/fredboat/skip";
+import skip from "../../services/fredboat/skip";
 
 export default {
     data: new SlashCommandBuilder().setName("skip").setDescription("Skips a song"),

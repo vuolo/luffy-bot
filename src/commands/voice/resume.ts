@@ -1,7 +1,7 @@
 import { CommandInteraction, GuildMember } from "discord.js";
 import { getVoiceConnection, VoiceConnectionReadyState } from "@discordjs/voice";
 import { createBasicEmbed } from "../../utils/embeds";
-import unpause from "src/services/fredboat/unpause";
+import unpause from "../../services/fredboat/unpause";
 
 export default {
     data: {

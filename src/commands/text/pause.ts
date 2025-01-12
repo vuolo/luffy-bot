@@ -1,7 +1,7 @@
 import { getVoiceConnection, VoiceConnectionReadyState } from "@discordjs/voice";
 import { CommandInteraction, GuildMember, SlashCommandBuilder } from "discord.js";
 import { createBasicEmbed } from "../../utils/embeds";
-import pause from "src/services/fredboat/pause";
+import pause from "../../services/fredboat/pause";
 
 export default {
     data: new SlashCommandBuilder().setName("pause").setDescription("Pause bot audio"),
