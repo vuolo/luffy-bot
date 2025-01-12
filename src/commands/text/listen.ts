@@ -118,7 +118,8 @@ export default {
           transcription = await transcribeAudio(
             inputAudio,
             speechClient,
-            interaction
+            interaction,
+            userId
           );
         }
 
