@@ -28,8 +28,8 @@ export default async function transcribeAudio(inputAudio: Buffer, client: any, i
         .join("\n");
     console.log("Billed time: ", response.totalBilledTime);
     console.log("Transcription: ", transcription);
-    await interaction.channel!.send(
-        `**Transcription:** \`${transcription}\``
+    if (transcription) await interaction.channel!.send(
+        `**Transcription:** \`${transcription || "<nothing detected>"}\``
     );
 
     return transcription;
