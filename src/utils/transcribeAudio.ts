@@ -67,41 +67,50 @@ const sayVoiceLine = async (
   interaction: CommandInteraction,
   userId: string
 ) => {
-let needsToSpeak = false;
+  let needsToSpeak = false;
   const customUser = userIds[userId]; // "mikey" | "rafe" | "blake" | "jonny" | "conor" | "justin"
+  const lowercaseTranscription = transcription.toLowerCase();
 
   const didSayCommand = ["play", "skip", "pause", "resume", "disconnect"].some(
-    (command) => transcription.toLowerCase().startsWith(command)
+    (command) => lowercaseTranscription.startsWith(command)
   );
-  const command = didSayCommand ? transcription.split(" ")[0].toLowerCase() : null;
+  const command = didSayCommand ? lowercaseTranscription.split(" ")[0] : null;
 
   let filename = "";
   if (!didSayCommand) {
     switch (customUser) {
-        case "mikey":
-            filename = "personalized/fk-u/mikey-luffy-f-u-mikey.wav";
-            break;
-        case "rafe":
-            filename = "personalized/fk-u/rafe-Luffy-F-U-Ralph.wav";
-            break;
-        case "blake":
-            filename = "personalized/fk-u/blake-luffy-BLAKE-F-U-BITCH.wav";
-            break;
-        case "jonny":
-            filename = "personalized/fk-u/jonny-luffy-tts-file-f-u.wav";
-            break;
-        case "conor":
-            filename = "personalized/fk-u/conor-luffy-F-U-CONOR.wav";
-            break;
-        case "justin":
-            filename = "personalized/fk-u/justin-luffy-JUSTIN-U-R-BITCH.wav";
-            break;
-        }
-  }
-  else if (didSayCommand) {
+      case "mikey":
+        filename = "personalized/fk-u/mikey-luffy-f-u-mikey.wav";
+        break;
+      case "rafe":
+        filename = "personalized/fk-u/rafe-Luffy-F-U-Ralph.wav";
+        break;
+      case "blake":
+        filename = "personalized/fk-u/blake-luffy-BLAKE-F-U-BITCH.wav";
+        break;
+      case "jonny":
+        filename = "personalized/fk-u/jonny-luffy-tts-file-f-u.wav";
+        break;
+      case "conor":
+        filename = "personalized/fk-u/conor-luffy-F-U-CONOR.wav";
+        break;
+      case "justin":
+        filename = "personalized/fk-u/justin-luffy-JUSTIN-U-R-BITCH.wav";
+        break;
+      default:
+        filename = "luffy-U-F-U-BITCH.wav";
+        break;
+    }
+  } else if (didSayCommand) {
     switch (command) {
-      case "play": 
-        filename = "commands/play/luffy-tts-file-y-yell-at-me.wav"
+      case "play":
+        const isSillyBillyChrismtas =
+          lowercaseTranscription.includes("silly") &&
+          lowercaseTranscription.includes("billy") &&
+          lowercaseTranscription.includes("christmas");
+        if (isSillyBillyChrismtas)
+          filename = "commands/play/luffy-tts-file-sillybillychristmas.wav";
+        else filename = "commands/play/luffy-tts-file-y-yell-at-me.wav";
         break;
       case "skip":
         break;
@@ -116,7 +125,9 @@ let needsToSpeak = false;
 
   needsToSpeak = !!filename;
   if (!needsToSpeak) {
-    console.log(`Luffy doesn't need to speak in response to this command (transcription: ${transcription})`);
+    console.log(
+      `Luffy doesn't need to speak in response to this command (transcription: ${transcription})`
+    );
     return;
   }
 
