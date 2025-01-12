@@ -3,6 +3,7 @@ import userIds from "../consts/user-ids";
 import {
   createAudioPlayer,
   createAudioResource,
+  getVoiceConnection,
   NoSubscriberBehavior,
   StreamType,
 } from "@discordjs/voice";
@@ -69,22 +70,29 @@ const sayVoiceLine = async (
   const customUser = userIds[userId]; // "mikey" | "rafe" | "blake" | "jonny" | "connor" | "justin"
 
   const filename = "luffy-F-YOR-MOTHA";
-  const path = join(__dirname, `../../voice-lines/${filename}.webm`)
-  const resource = createAudioResource(
-    createReadStream(path),
-    {
-      inputType: StreamType.WebmOpus,
-      inlineVolume: true,
-    }
-  );
-
-  const audioPlayer = createAudioPlayer({
-    behaviors: {
-      noSubscriber: NoSubscriberBehavior.Play,
-    },
+  const path = join(__dirname, `../../voice-lines/${filename}.webm`);
+  const resource = createAudioResource(createReadStream(path), {
+    inputType: StreamType.WebmOpus,
+    inlineVolume: true,
   });
 
-  console.log(`Playing voice line for ${customUser || userId} -- ${filename} -- ${transcription} -- ${path}`);
+  try {
+    const connection = getVoiceConnection(interaction.guild?.id!);
+    const audioPlayer = createAudioPlayer({
+      behaviors: {
+        noSubscriber: NoSubscriberBehavior.Play,
+      },
+    });
+    connection!.subscribe(audioPlayer);
 
-  audioPlayer.play(resource);
+    console.log(
+      `Playing voice line for ${
+        customUser || userId
+      } -- ${filename} -- ${transcription} -- ${path}`
+    );
+
+    audioPlayer.play(resource);
+  } catch (error) {
+    console.error(error);
+  }
 };
