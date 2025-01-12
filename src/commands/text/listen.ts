@@ -16,6 +16,7 @@ import transcribeAudio from "../../utils/transcribeAudio";
 import dispatchVoiceCommand from "../voice/dispatchVoiceCommand";
 import { createBasicEmbed } from "../../utils/embeds";
 import path from "path";
+import userIds from "../../consts/user-ids";
 
 const USE_CUSTOM_WAKE_WORD = true;
 
@@ -99,7 +100,7 @@ export default {
         return;
       }
 
-      console.log(`User ${userId} started speaking`);
+      console.log(`User ${userIds[userId] || userId} started speaking`);
       const DONT_CHECK_USER_ID = true;
       if (
         DONT_CHECK_USER_ID ||
