@@ -17,7 +17,7 @@ export default {
         const connection = getVoiceConnection(member.guild.id);
         const state = connection!.state as VoiceConnectionReadyState;
 
-        const trackId = "";
+        const trackId = undefined;
         await skip(trackId, interaction.guild?.id);
 
         // if (!state.subscription?.player.state.status) {

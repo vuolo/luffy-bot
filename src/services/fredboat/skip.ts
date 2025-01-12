@@ -1,6 +1,9 @@
 import { FREAKBOB_GUILD_ID } from "./_consts";
 
-export default async (trackId: string, guildId = FREAKBOB_GUILD_ID) => {
+export default async (
+  trackId: string | null | undefined = global.curTrackId,
+  guildId = FREAKBOB_GUILD_ID
+) => {
   const response = await fetch(
     `https://api2.fredboat.com/guilds/${guildId}/track/${trackId}`,
     {

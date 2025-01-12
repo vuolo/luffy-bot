@@ -24,7 +24,7 @@ export default {
             return await interaction.reply({ embeds: [embed] });
         }
 
-        const trackId = "";
+        const trackId = undefined;
         await skip(trackId, interaction.guild?.id);
 
         // const state = connection.state as VoiceConnectionReadyState;

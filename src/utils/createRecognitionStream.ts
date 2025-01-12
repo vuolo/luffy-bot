@@ -21,8 +21,8 @@ export default function createRecognitionStream(
     // creates a readable stream of opus packets from user voice
     const opusStream = receiver.subscribe(userId, {
       end: {
-        behavior: EndBehaviorType.AfterSilence,
-        duration: 500,
+        behavior: EndBehaviorType.AfterInactivity,
+        duration: 1500,
       },
     });
 

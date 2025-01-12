@@ -31,6 +31,7 @@ export default async (url: string, guildId = FREAKBOB_GUILD_ID) => {
   console.log(
     `Playing track ${jsonData.track.title} from ${jsonData.track.type}`
   )
+  global.curTrackId = jsonData.track.id;
 
   return jsonData;
 };
