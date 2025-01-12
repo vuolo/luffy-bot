@@ -38,10 +38,10 @@ export default {
             );
             return await interaction.reply({ embeds: [embed] });
         }
-        if (connection && connection.joinConfig.channelId !== member.voice.channelId) {
-            embed = createBasicEmbed("Bot is not currently connected to this voice channel");
-            return await interaction.reply({ embeds: [embed] });
-        }
+        // if (connection && connection.joinConfig.channelId !== member.voice.channelId) {
+        //     embed = createBasicEmbed("Bot is not currently connected to this voice channel");
+        //     return await interaction.reply({ embeds: [embed] });
+        // }
 
         if (!connection) {
             try {

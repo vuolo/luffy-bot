@@ -12,16 +12,16 @@ export default {
 
         const connection = getVoiceConnection(member.guild.id);
 
-        if (!member.voice.channel) {
-            embed = createBasicEmbed(
-                "You must be connected to a voice channel to use this command"
-            );
-            return await interaction.reply({ embeds: [embed] });
-        }
-        if (!connection || connection.joinConfig.channelId !== member.voice.channelId) {
-            embed = createBasicEmbed("Bot is not currently connected to this voice channel");
-            return await interaction.reply({ embeds: [embed] });
-        }
+        // if (!member.voice.channel) {
+        //     embed = createBasicEmbed(
+        //         "You must be connected to a voice channel to use this command"
+        //     );
+        //     return await interaction.reply({ embeds: [embed] });
+        // }
+        // if (!connection || connection.joinConfig.channelId !== member.voice.channelId) {
+        //     embed = createBasicEmbed("Bot is not currently connected to this voice channel");
+        //     return await interaction.reply({ embeds: [embed] });
+        // }
 
         // const state = connection.state as VoiceConnectionReadyState;
 
