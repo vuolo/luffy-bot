@@ -16,10 +16,10 @@ export default {
     const member = interaction.member as GuildMember;
     const client = interaction.client as Client;
 
-    if (search === "") {
-      embed = createBasicEmbed(`Did not receive a song to search`);
-      return await interaction.channel!.send({ embeds: [embed] });
-    }
+    // if (search === "") {
+    //   embed = createBasicEmbed(`Did not receive a song to search`);
+    //   return await interaction.channel!.send({ embeds: [embed] });
+    // }
 
     if (!search) {
       await unpause(interaction.guild?.id);
