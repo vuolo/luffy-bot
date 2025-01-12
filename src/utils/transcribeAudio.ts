@@ -73,6 +73,7 @@ let needsToSpeak = false;
   const didSayCommand = ["play", "skip", "pause", "resume", "disconnect"].some(
     (command) => transcription.toLowerCase().startsWith(command)
   );
+  const command = didSayCommand ? transcription.split(" ")[0].toLowerCase() : null;
 
   let filename = "";
   if (!didSayCommand) {
@@ -96,6 +97,21 @@ let needsToSpeak = false;
             filename = "personalized/fk-u/justin-luffy-JUSTIN-U-R-BITCH.wav";
             break;
         }
+  }
+  else if (didSayCommand) {
+    switch (command) {
+      case "play": 
+        filename = "commands/play/luffy-tts-file-y-yell-at-me.wav"
+        break;
+      case "skip":
+        break;
+      case "pause":
+        break;
+      case "resume":
+        break;
+      case "disconnect":
+        break;
+    }
   }
 
   needsToSpeak = !!filename;
