@@ -67,9 +67,43 @@ const sayVoiceLine = async (
   interaction: CommandInteraction,
   userId: string
 ) => {
-  const customUser = userIds[userId]; // "mikey" | "rafe" | "blake" | "jonny" | "connor" | "justin"
+let needsToSpeak = false;
+  const customUser = userIds[userId]; // "mikey" | "rafe" | "blake" | "jonny" | "conor" | "justin"
 
-  const filename = "luffy-F-YOR-MOTHA";
+  const didSayCommand = ["play", "skip", "pause", "resume", "disconnect"].some(
+    (command) => transcription.toLowerCase().startsWith(command)
+  );
+
+  let filename = "";
+  if (!didSayCommand) {
+    switch (customUser) {
+        case "mikey":
+            filename = "personalized/fk-u/mikey-luffy-f-u-mikey.wav";
+            break;
+        case "rafe":
+            filename = "personalized/fk-u/rafe-Luffy-F-U-Ralph.wav";
+            break;
+        case "blake":
+            filename = "personalized/fk-u/blake-luffy-BLAKE-F-U-BITCH.wav";
+            break;
+        case "jonny":
+            filename = "personalized/fk-u/jonny-luffy-tts-file-f-u.wav";
+            break;
+        case "conor":
+            filename = "personalized/fk-u/conor-luffy-F-U-CONOR.wav";
+            break;
+        case "justin":
+            filename = "personalized/fk-u/justin-luffy-JUSTIN-U-R-BITCH.wav";
+            break;
+        }
+  }
+
+  needsToSpeak = !!filename;
+  if (!needsToSpeak) {
+    console.log(`Luffy doesn't need to speak in response to this command (transcription: ${transcription})`);
+    return;
+  }
+
   const path = join(__dirname, `../../voice-lines/${filename}.webm`);
   const resource = createAudioResource(createReadStream(path), {
     inputType: StreamType.WebmOpus,
