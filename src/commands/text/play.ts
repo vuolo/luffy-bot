@@ -15,6 +15,7 @@ import getYoutubeInfo from "../../utils/getYoutubeInfo";
 import { createBasicEmbed, createQueueEmbed } from "../../utils/embeds";
 import playQueue from "../../utils/playQueue";
 import playFirst from "../../services/fredboat/playFirst";
+import unpause from "src/services/fredboat/unpause";
 
 export default {
     data: new SlashCommandBuilder()
@@ -70,7 +71,13 @@ export default {
         }
 
         const search = options.getString("search")!;
-        await playFirst(search, interaction.guild?.id);
+
+        if (!search) {
+            await unpause(interaction.guild?.id);
+        } else {
+            await playFirst(search, interaction.guild?.id);
+        }
+
         // const song = await getYoutubeInfo(search);
 
         // if (!song.url) {
