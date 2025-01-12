@@ -4,6 +4,7 @@ import prism from "prism-media";
 import { Porcupine } from "@picovoice/porcupine-node";
 import { CommandInteraction } from "discord.js";
 import { createBasicEmbed } from "./embeds";
+import { EXCLUDE_USER_IDS } from "../commands/text/listen";
 
 export default function createRecognitionStream(
   receiver: VoiceReceiver,
@@ -11,6 +12,11 @@ export default function createRecognitionStream(
   porcupine: Porcupine,
   interaction: CommandInteraction
 ) {
+  if (EXCLUDE_USER_IDS.includes(userId)) {
+    console.log("User is excluded from hotword detection:", userId);
+    return;
+  }
+
   return new Promise((resolve, reject) => {
     const FRAME_LENGTH = porcupine.frameLength; // required frame length for porcupine to process audio data
     const detectedBuffer: Buffer[] = []; // receives buffer data once hotword is detected

@@ -19,7 +19,7 @@ import path from "path";
 
 const USE_CUSTOM_WAKE_WORD = true;
 
-const EXCLUDE_USER_IDS = [
+export const EXCLUDE_USER_IDS = [
   "184405311681986560", // exclude FredBoat (non-premium)
 ];
 
