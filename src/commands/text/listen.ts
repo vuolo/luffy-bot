@@ -19,6 +19,10 @@ import path from "path";
 
 const USE_CUSTOM_WAKE_WORD = true;
 
+const EXCLUDE_USER_IDS = [
+  "184405311681986560" // exclude FredBoat (non-premium)
+]
+
 export default {
   data: new SlashCommandBuilder()
     .setName("l")
@@ -86,6 +90,7 @@ export default {
     client.gcSpeechInstance.set(member.guild.id, speechClient);
 
     receiver.speaking.on("start", async (userId) => {
+      if (EXCLUDE_USER_IDS.includes(userId)) return;
       console.log(`User ${userId} started speaking`);
       const DONT_CHECK_USER_ID = true;
       if (DONT_CHECK_USER_ID || userId === client.listenConnection.get(member.guild.id)) {
