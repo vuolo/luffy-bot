@@ -20,8 +20,8 @@ import path from "path";
 const USE_CUSTOM_WAKE_WORD = true;
 
 const EXCLUDE_USER_IDS = [
-  "184405311681986560" // exclude FredBoat (non-premium)
-]
+  "184405311681986560", // exclude FredBoat (non-premium)
+];
 
 export default {
   data: new SlashCommandBuilder()
@@ -90,10 +90,21 @@ export default {
     client.gcSpeechInstance.set(member.guild.id, speechClient);
 
     receiver.speaking.on("start", async (userId) => {
-      if (EXCLUDE_USER_IDS.includes(userId)) return;
+      if (EXCLUDE_USER_IDS.includes(userId)) {
+        console.log(
+          `User ${userId} is excluded (${
+            userId === "184405311681986560" ? "FredBoat" : "Unknown"
+          })`
+        );
+        return;
+      }
+
       console.log(`User ${userId} started speaking`);
       const DONT_CHECK_USER_ID = true;
-      if (DONT_CHECK_USER_ID || userId === client.listenConnection.get(member.guild.id)) {
+      if (
+        DONT_CHECK_USER_ID ||
+        userId === client.listenConnection.get(member.guild.id)
+      ) {
         let transcription = "";
 
         const inputAudio = (await createRecognitionStream(
@@ -104,13 +115,20 @@ export default {
         )) as Buffer;
 
         if (inputAudio.length > 0) {
-          transcription = await transcribeAudio(inputAudio, speechClient, interaction);
+          transcription = await transcribeAudio(
+            inputAudio,
+            speechClient,
+            interaction
+          );
         }
 
-        if (transcription) dispatchVoiceCommand(transcription, interaction, 
+        if (transcription)
+          dispatchVoiceCommand(
+            transcription,
+            interaction,
             // get the user object using the userId
             (await client.users.fetch(userId)).username
-        );
+          );
       }
     });
 
