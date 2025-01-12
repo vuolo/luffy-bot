@@ -4,7 +4,8 @@ import { CommandInteraction } from "discord.js";
 export default async function transcribeAudio(
   inputAudio: Buffer,
   client: any,
-  interaction: CommandInteraction
+  interaction: CommandInteraction,
+  userId: string
 ) {
   const config = {
     encoding: "LINEAR16",
@@ -37,7 +38,13 @@ export default async function transcribeAudio(
       `**Transcription:** \`${transcription || "<nothing detected>"}\``
     );
   else {
-    await interaction.channel!.send("couldn't hear u bitch");
+    await interaction.channel!.send(
+      `${
+        (
+          await interaction.client.users.fetch(userId)
+        ).username
+      } couldn't hear u bitch`
+    );
   }
 
   return transcription;
