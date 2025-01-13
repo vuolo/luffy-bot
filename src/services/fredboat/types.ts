@@ -34,3 +34,7 @@ export type TrackResponse = {
   track: TrackDetails;
   status: "LOADED_TRACK"; // -> "LOADED_TRACK"
 };
+
+export type TicketResponse = {
+  ticket: string; // -> "Qa7enQ+fcS4OOAf1vc+u+FK9xk87zuTLAj+oV6nXgMM="
+}

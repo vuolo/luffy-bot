@@ -1,4 +1,4 @@
-import { FREAKBOB_GUILD_ID } from "./_consts";
+import { FREDBOAT_API_BEARER_TOKEN, FREAKBOB_GUILD_ID } from "./_consts";
 import { SearchResultTrackList } from "./types";
 
 export default async (query: string, guildId = FREAKBOB_GUILD_ID) => {
@@ -12,7 +12,7 @@ export default async (query: string, guildId = FREAKBOB_GUILD_ID) => {
       headers: {
         accept: "application/json, text/plain, */*",
         "accept-language": "en-US,en;q=0.9",
-        authorization: "Bearer S0FG2e8s9BwJZLLmsJJUiZd1TULv6X",
+        authorization: `Bearer ${FREDBOAT_API_BEARER_TOKEN}`,
         "content-type": "application/json",
         priority: "u=1, i",
         "sec-ch-ua": '"Chromium";v="131", "Not_A Brand";v="24"',
