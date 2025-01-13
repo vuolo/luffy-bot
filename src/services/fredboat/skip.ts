@@ -48,6 +48,8 @@ export default async function removeTrack(
   if (!trackId) {
     console.log("> attempted to skip, but no trackId provided to DELETE. No action taken.");
     return;
+  } else {
+    console.log(`> Skipping (deleting) track with ID: ${trackId}`);
   }
 
   const response = await fetch(
