@@ -72,7 +72,7 @@ const sayVoiceLine = async (
 
   let needsToSpeak = false;
   const customUser = userIds[userId]; // "mikey" | "rafe" | "blake" | "jonny" | "conor" | "justin"
-  const lowercaseTranscription = transcription.toLowerCase();
+  const lowercaseTranscription = transcription.toLowerCase().trim();
 
   const didSayCommand = ["play", "skip", "pause", "resume", "disconnect"].some(
     (command) => lowercaseTranscription.startsWith(command)

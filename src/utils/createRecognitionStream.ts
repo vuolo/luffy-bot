@@ -28,7 +28,7 @@ export default function createRecognitionStream(
     const opusStream = receiver.subscribe(userId, {
       end: {
         behavior: EndBehaviorType.AfterInactivity,
-        duration: 500,
+        duration: 1000, // TODO: optimize, maybe to 1000 or 1500
       },
     });
 
