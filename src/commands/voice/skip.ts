@@ -18,7 +18,7 @@ export default {
         const state = connection!.state as VoiceConnectionReadyState;
 
         const trackId = undefined;
-        await skip(trackId, interaction.guild?.id);
+        await skip(trackId, interaction.guild?.id, "", interaction);
 
         // if (!state.subscription?.player.state.status) {
         //     embed = createBasicEmbed("Bot is not currently playing anything!");

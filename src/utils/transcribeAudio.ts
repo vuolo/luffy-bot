@@ -57,22 +57,24 @@ export default async function transcribeAudio(
     );
   }
 
-  await sayVoiceLine(transcription, interaction, userId);
+  await sayVoiceLine(userId, transcription, interaction);
 
   return transcription;
 }
 
-const sayVoiceLine = async (
+const customVoiceLineIDs = ["skipped-no-track"] as const;
+
+export const sayVoiceLine = async (
+  userId: string,
   transcription: string,
   interaction: CommandInteraction,
-  userId: string
+  customVoiceLineId?: (typeof customVoiceLineIDs)[number]
 ) => {
-  
   // must convert to webm: https://www.freeconvert.com/wav-to-webm
 
   let needsToSpeak = false;
-  const customUser = userIds[userId]; // "mikey" | "rafe" | "blake" | "jonny" | "conor" | "justin"
-  const lowercaseTranscription = transcription.toLowerCase().trim();
+  const customUser = userIds[userId ?? ""]; // "mikey" | "rafe" | "blake" | "jonny" | "conor" | "justin"
+  const lowercaseTranscription = transcription?.toLowerCase().trim() ?? "";
 
   const didSayCommand = ["play", "skip", "pause", "resume", "disconnect"].some(
     (command) => lowercaseTranscription.startsWith(command)
@@ -80,7 +82,21 @@ const sayVoiceLine = async (
   const command = didSayCommand ? lowercaseTranscription.split(" ")[0] : null;
 
   let filename = "";
-  if (!didSayCommand) {
+
+  if (
+    customVoiceLineIDs.includes(
+      (customVoiceLineId || "") as (typeof customVoiceLineIDs)[number]
+    )
+  ) {
+    switch (customVoiceLineId) {
+      case "skipped-no-track":
+        filename = "commands/skip/no-track.wav";
+        break;
+      default:
+        filename = "-unorganized/luffy-F-YOR-MOTHA.wav";
+        break;
+    }
+  } else if (!didSayCommand) {
     switch (customUser) {
       case "mikey":
         filename = "personalized/fk-u/mikey-luffy-f-u-mikey.wav";
@@ -142,7 +158,7 @@ const sayVoiceLine = async (
   });
 
   try {
-    const connection = getVoiceConnection(interaction.guild?.id!);
+    const connection = getVoiceConnection(interaction?.guild?.id!);
     const audioPlayer = createAudioPlayer({
       behaviors: {
         noSubscriber: NoSubscriberBehavior.Play,

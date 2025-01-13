@@ -11,11 +11,15 @@ import { WebSocket } from "ws";
 import createTicket from "./createTicket";
 import { FREDBOAT_API_BEARER_TOKEN, FREAKBOB_GUILD_ID } from "./_consts";
 import { WebSocketMessage } from "./types.ws";
+import { sayVoiceLine } from "../../utils/transcribeAudio";
+import { CommandInteraction } from "discord.js";
 
-export default async function removeTrack(
+export default async (
   trackId?: string,
-  guildId = FREAKBOB_GUILD_ID
-) {
+  guildId = FREAKBOB_GUILD_ID,
+  userId?: string,
+  interaction?: CommandInteraction
+) => {
   // If no trackId is provided, let's:
   // 1) get a ticket
   // 2) connect to WS
@@ -46,7 +50,21 @@ export default async function removeTrack(
   // If you definitely want to remove a track, ensure `trackId` isn't empty at this point
   // or optionally skip if trackId is not provided.
   if (!trackId) {
-    console.log("> attempted to skip, but no trackId provided to DELETE. No action taken.");
+    console.log(
+      "> attempted to skip, but no trackId provided to DELETE. No action taken."
+    );
+    if (interaction)
+    {
+      console.log("No track to skip, sending voice line");
+      await sayVoiceLine(
+        userId ?? "",
+        "skip <no-track>",
+        interaction,
+        "skipped-no-track"
+      );
+    } else {
+      console.log("No track to skip, no interaction provided");
+    }
     return;
   } else {
     console.log(`> Skipping (deleting) track with ID: ${trackId}`);
@@ -74,7 +92,7 @@ export default async function removeTrack(
   );
 
   return response;
-}
+};
 
 function collectWebSocketMessages(
   wsUrl: string,
@@ -116,8 +134,11 @@ function collectWebSocketMessages(
       // If it's a playerUpdate, we can read the trackId & close early
       if (parsed.op === "playerUpdate") {
         const playerUpdate = parsed;
-        firstPlayerUpdateTrackId = playerUpdate.d.track.id;
-        console.log("[WS] playerUpdate -> track.id =", firstPlayerUpdateTrackId);
+        firstPlayerUpdateTrackId = playerUpdate?.d?.track?.id;
+        console.log(
+          "[WS] playerUpdate -> track.id =",
+          firstPlayerUpdateTrackId
+        );
 
         // Now let's close early
         ws.close();
