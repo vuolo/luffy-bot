@@ -67,6 +67,9 @@ const sayVoiceLine = async (
   interaction: CommandInteraction,
   userId: string
 ) => {
+  
+  // must convert to webm: https://www.freeconvert.com/wav-to-webm
+
   let needsToSpeak = false;
   const customUser = userIds[userId]; // "mikey" | "rafe" | "blake" | "jonny" | "conor" | "justin"
   const lowercaseTranscription = transcription.toLowerCase();
