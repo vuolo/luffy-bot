@@ -30,6 +30,9 @@ export default {
     .setDescription("Connects and listen to audio in voice channel"),
 
   async execute(interaction: CommandInteraction) {
+
+    console.log(interaction)
+
     let embed;
     const member = interaction.member as GuildMember;
     const client = interaction.client as Client;
@@ -201,3 +204,115 @@ function initPorcupine() {
 
   return porcupine;
 }
+
+export const DEFAULT_INTERACTION = {
+  type: 2,
+  id: '1328175686900383866',
+  applicationId: '1325664338383470675',
+  channelId: '1253143500908662797',
+  guildId: '1253143500132843551',
+  user: {
+    id: '344672338744442880',
+    bot: false,
+    system: false,
+    flags: { bitfield: 64 },
+    username: 'vuolo',
+    discriminator: '0',
+    avatar: 'a831704795f3e64c3c1152b35e0d2ff9',
+    banner: undefined,
+    accentColor: undefined
+  },
+  member: {
+    guild: {
+      id: '1253143500132843551',
+      name: 'freakbob',
+      icon: '27d049f28f8935a549761f34e06c6068',
+      features: [Array],
+      commands: [],
+      members: [],
+      channels: [],
+      bans: [],
+      roles: [],
+      presences: {},
+      voiceStates: [],
+      stageInstances: [],
+      invites: [],
+      scheduledEvents: [],
+      autoModerationRules: [],
+      available: true,
+      shardId: 0,
+      splash: null,
+      banner: null,
+      description: null,
+      verificationLevel: 0,
+      vanityURLCode: null,
+      nsfwLevel: 0,
+      premiumSubscriptionCount: 0,
+      discoverySplash: null,
+      memberCount: 17,
+      large: false,
+      premiumProgressBarEnabled: false,
+      applicationId: null,
+      afkTimeout: 300,
+      afkChannelId: '1253143905562792017',
+      systemChannelId: '1253143500908662796',
+      premiumTier: 0,
+      widgetEnabled: null,
+      widgetChannelId: null,
+      explicitContentFilter: 0,
+      mfaLevel: 0,
+      joinedTimestamp: 1736477528604,
+      defaultMessageNotifications: 0,
+      systemChannelFlags: [],
+      maximumMembers: 500000,
+      maximumPresences: null,
+      maxVideoChannelUsers: 25,
+      approximateMemberCount: null,
+      approximatePresenceCount: null,
+      vanityURLUses: null,
+      rulesChannelId: null,
+      publicUpdatesChannelId: null,
+      preferredLocale: 'en-US',
+      ownerId: '258414216732606465',
+      emojis: [],
+      stickers: []
+    },
+    joinedTimestamp: 1718843275151,
+    premiumSinceTimestamp: null,
+    nickname: null,
+    pending: false,
+    communicationDisabledUntilTimestamp: null,
+    _roles: [ '1253145620978597968' ],
+    user: {
+      id: '344672338744442880',
+      bot: false,
+      system: false,
+      flags: [],
+      username: 'vuolo',
+      discriminator: '0',
+      avatar: 'a831704795f3e64c3c1152b35e0d2ff9',
+      banner: undefined,
+      accentColor: undefined
+    },
+    avatar: null,
+    flags: { bitfield: 0 }
+  },
+  version: 1,
+  appPermissions: { bitfield: 2251799813685247n },
+  memberPermissions: { bitfield: 2251799813685247n },
+  locale: 'en-US',
+  guildLocale: 'en-US',
+  commandId: '1327188074580672524',
+  commandName: 'l',
+  commandType: 1,
+  commandGuildId: null,
+  deferred: false,
+  replied: false,
+  ephemeral: null,
+  webhook: { id: '1325664338383470675' },
+  options: {
+    _group: null,
+    _subcommand: null,
+    _hoistedOptions: []
+  }
+} as unknown as CommandInteraction;
