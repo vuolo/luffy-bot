@@ -98,7 +98,7 @@ const sayVoiceLine = async (
         filename = "personalized/fk-u/justin-luffy-JUSTIN-U-R-BITCH.wav";
         break;
       default:
-        filename = "luffy-U-F-U-BITCH.wav";
+        filename = "-unorganized/luffy-U-F-U-BITCH.wav";
         break;
     }
   } else if (didSayCommand) {
@@ -113,6 +113,7 @@ const sayVoiceLine = async (
         else filename = "commands/play/luffy-tts-file-y-yell-at-me.wav";
         break;
       case "skip":
+        filename = "commands/skip/luffy-tts-file-SKIP-CALLMEDADDY.wav";
         break;
       case "pause":
         break;
