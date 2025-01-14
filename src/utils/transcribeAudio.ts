@@ -77,6 +77,9 @@ function formatTranscription(transcription: string) {
   /** if starts with "place" or "a", then map it to "play" */
   transcription = transcription.replace(/^place|^a/, "play");
 
+  /** if starts with "scope", then map it to "skip" */
+  transcription = transcription.replace(/^scope/, "skip");
+
   /** if starts with "can you" or "can u", then remove it */
   transcription = transcription.replace(/^can you|^can u/, "");
 
