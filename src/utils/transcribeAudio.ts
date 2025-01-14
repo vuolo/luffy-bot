@@ -38,7 +38,7 @@ export default async function transcribeAudio(
   };
 
   const [response]: any = await client.recognize(request);
-  const transcription = response.results
+  let transcription = response.results
     .map((result: any) => result.alternatives[0].transcript)
     .join("\n");
   console.log("Billed time: ", response.totalBilledTime);
@@ -57,7 +57,28 @@ export default async function transcribeAudio(
     );
   }
 
+  transcription = formatTranscription(transcription);
+
   await sayVoiceLine(userId, transcription, interaction);
+
+  return transcription;
+}
+
+function formatTranscription(transcription: string) {
+  /** trim leading and trailing whitespace */
+  transcription = transcription.trim();
+
+  /** merge spelled-out words (like "t e c c a" -> "tecca"). */
+  transcription = transcription.replace(/\b([a-zA-Z])(?:\s+[a-zA-Z])+\b/g, (match) => match.replace(/\s+/g, ""));
+
+  /** convert to lowercase (or do so at the end, if preferred). */
+  transcription = transcription.toLowerCase();
+
+  /** if starts with "place" or "a", then map it to "play" */
+  transcription = transcription.replace(/^place|^a/, "play");
+
+  /** if starts with "can you" or "can u", then remove it */
+  transcription = transcription.replace(/^can you|^can u/, "");
 
   return transcription;
 }
@@ -135,6 +156,7 @@ export const sayVoiceLine = async (
         filename = "commands/skip/luffy-tts-file-SKIP-CALLMEDADDY.wav";
         break;
       case "pause":
+        filename = "commands/pause/luffy-tts-file-PAUSE1.wav"
         break;
       case "resume":
         break;
